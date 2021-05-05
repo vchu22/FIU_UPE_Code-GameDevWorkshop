@@ -5,13 +5,19 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Animator animator;
+    public SoundManagerScript manager;
     public float maxSpeed, jumpHeight;
 
+    void Start()
+    {
+      manager = GetComponent<SoundManagerScript>();
+    }
     void Update()
     {
       animator.SetFloat("walkingSpeed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
       if (Input.GetKeyDown(KeyCode.W)) {
         if (Physics2D.IsTouchingLayers(GetComponent<Collider2D>())){
+          manager.Play("jump");
           GetComponent<Rigidbody2D>().velocity += new Vector2(0, jumpHeight);
         }
       }
