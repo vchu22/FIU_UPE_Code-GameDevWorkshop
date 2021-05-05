@@ -11,7 +11,9 @@ public class PlayerMovement : MonoBehaviour
     {
       animator.SetFloat("walkingSpeed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
       if (Input.GetKeyDown(KeyCode.W)) {
-        GetComponent<Rigidbody2D>().velocity += new Vector2(0, jumpHeight);
+        if (Physics2D.IsTouchingLayers(GetComponent<Collider2D>())){
+          GetComponent<Rigidbody2D>().velocity += new Vector2(0, jumpHeight);
+        }
       }
       if (Input.GetKey(KeyCode.A)) {
         // Goes left
