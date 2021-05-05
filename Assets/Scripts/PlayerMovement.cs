@@ -46,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-      Debug.Log("Tag " + other.tag);
-      
       if (other.tag == "coin") {
         Destroy(other.gameObject);
         GetComponent<SoundManagerScript>().Play("coin");
